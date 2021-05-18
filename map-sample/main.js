@@ -5,10 +5,8 @@ var center = {
   lat: 35.69,
   lng: 139.69
 };
-var myposition = {
-  lat: 0,
-  lng: 0
-};
+var test;
+
 var url = `data.json`
 
 // 現在地取得処理
