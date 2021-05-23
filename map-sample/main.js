@@ -5,6 +5,9 @@ var infoWindow;
 
 var url = `data.json`
 
+/*global navigator*/
+/*global google*/
+
 function initMap() {
 
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -30,7 +33,8 @@ function initMap() {
 
       marker_2 = new google.maps.Marker({
         position: myposition,
-        map: map
+        map: map,
+        icon:'images/pos.png'
       });
 
       infoWindow = new google.maps.InfoWindow({
