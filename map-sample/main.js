@@ -3,7 +3,8 @@ var marker;
 var marker_2;
 var infoWindow;
 
-var url = `data.json`
+var url = `list.json`
+// var url = `data.json`
 
 /*global navigator*/
 /*global google*/
@@ -22,9 +23,11 @@ function initMap() {
     });
 
     $.getJSON(url, (data) => {
-      console.log(`lat=${data.lat}, lng=${data.lng}, content=${data.content}`);
+      console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
+      // console.log(`lat=${data.lat}, lng=${data.lng}, content=${data.content}`);
 
-      var latlng = new google.maps.LatLng(data.lat, data.lng);
+      var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
+      // var latlng = new google.maps.LatLng(data.lat, data.lng);
 
       marker = new google.maps.Marker({
         position: latlng,
@@ -38,7 +41,8 @@ function initMap() {
       });
 
       infoWindow = new google.maps.InfoWindow({
-        content: `<div class="sample"><a href="${data.url}">${data.content}</a></div>`
+        content: `<div class="sample"><a href="${data[0].url}">${data[0].name}</a></div>`
+        // content: `<div class="sample"><a href="${data.url}">${data.content}</a></div>`
       });
 
       marker.addListener('click', function() {
