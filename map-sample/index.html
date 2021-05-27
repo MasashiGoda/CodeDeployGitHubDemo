@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Simple Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
- <script src="./main.js"></script>
-  </head>
-  <body>
-    <div id="map"></div>
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ7oXquAyekjHJykOUNzDX5rG5HmN91nA&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="島根県の「新型コロナの予防に取り組むお店」の一覧をGoogleマップに表示するサイトです。">
+  <title>島根県「新型コロナの予防に取り組むお店」一覧</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="./main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>島根県「新型コロナの予防に取り組むお店」一覧</h1>
+    <nav id="global_navi">
+      <ul>
+        <li><a href="index.html">掲載店舗一覧</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="main">
+    <h3>使い方</h3>
+      <p>オレンジのマーカーが現在地、赤のマーカーが対策店舗です</p>
+  </div>
+  <div id="map"></div>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ7oXquAyekjHJykOUNzDX5rG5HmN91nA&callback=initMap&libraries=&v=weekly" async></script>
+  <div id="news">
+    <h3>お知らせ</h3>
+    <ul>
+      <li>
+        <span>2021/05/28</span>
+        <a href="index.html">掲載店舗を更新しました</a>
+      </li>
+      <li>
+        <span>2021/05/27</span>
+        <a href="index.html">サイトを開設しました</a>
+      </li>
+    </ul>
+  </div>
+  <footer>
+    <div id="footer_navi">
+      <ul>
+        <li><a href="index.html">掲載店舗一覧</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <small>&copy; 2021 Shimane Ganbarou.</small>
+  </footer>
+</body>
+
 </html>

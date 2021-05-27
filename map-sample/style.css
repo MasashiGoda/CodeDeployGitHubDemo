@@ -1,7 +1,8 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+
 #map {
-  height: 80%;
+  height: 100%;
   width: 100%;
 }
 
@@ -10,5 +11,45 @@ html,
 body {
   height: 100%;
   margin: 5%;
+  margin-top: 0%;
   padding: 0;
+}
+
+#global_navi ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#global_navi ul li {
+    display: inline-block;
+    width: 164px;
+    text-align: center;  
+}
+
+a {
+  color: #333;
+}
+
+a:visited {
+  color: #333;
+}
+
+a:hover {
+  color: #333;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#news ul {
+    list-style: none;
+    padding: 0;
+}
+
+#news li {
+    margin-bottom: 10px;
+}
+
+#news li a {
+    margin-left: 15px;
 }
