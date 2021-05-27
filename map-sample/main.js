@@ -1,10 +1,9 @@
 var map;
-var marker;
-var marker_2;
-var infoWindow;
+var marker = [];
+var marker_cl;
+var infoWindow = [];
 
 var url = `list.json`
-// var url = `data.json`
 
 /*global navigator*/
 /*global google*/
@@ -12,60 +11,62 @@ var url = `list.json`
 function initMap() {
 
   navigator.geolocation.getCurrentPosition(function(position) {
-  
-    alert("緯度:" + position.coords.latitude + ",経度" + position.coords.longitude);
 
-    var myposition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      alert("緯度:" + position.coords.latitude + ",経度" + position.coords.longitude);
 
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: myposition,
-      zoom: 10
-    });
+      var myposition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    $.getJSON(url, (data) => {
-      console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
-      // console.log(`lat=${data.lat}, lng=${data.lng}, content=${data.content}`);
-
-      var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-      // var latlng = new google.maps.LatLng(data.lat, data.lng);
-
-      marker = new google.maps.Marker({
-        position: latlng,
-        map: map
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: myposition,
+        zoom: 10
       });
 
-      marker_2 = new google.maps.Marker({
-        position: myposition,
-        map: map,
-        icon:'images/pos.png'
-      });
+      $.getJSON(url, (data) => {
+        console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
 
-      infoWindow = new google.maps.InfoWindow({
-        content: `<div class="sample"><a href="${data[0].url}">${data[0].name}</a></div>`
-        // content: `<div class="sample"><a href="${data.url}">${data.content}</a></div>`
-      });
+        marker_cl = new google.maps.Marker({
+          position: myposition,
+          map: map,
+          icon: 'images/pos.png'
+        });
 
-      marker.addListener('click', function() {
-        infoWindow.open(map, marker);
+        var latlang;
+
+        for (let step = 0; step < data.length; step++) {
+
+          latlng = new google.maps.LatLng(data[step].lat, data[step].lng);
+
+          marker[step] = new google.maps.Marker({
+            position: latlng,
+            map: map
+          });
+
+          infoWindow[step] = new google.maps.InfoWindow({
+            content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a></div>`
+          });
+
+          marker[step].addListener('click', function() {
+            infoWindow[step].open(map, marker[step]);
+          });
+        }
       });
-    });
-  },
-  function(error) {
-    switch (error.code) {
-    case 1: //PERMISSION_DENIED
-      alert("位置情報の利用が許可されていません");
-      break;
-    case 2: //POSITION_UNAVAILABLE
-      alert("現在位置が取得できませんでした");
-      break;
-    case 3: //TIMEOUT
-      alert("タイムアウトになりました");
-      break;
-    default:
-      alert("その他のエラー(エラーコード:" + error.code + ")");
-      break;
+    },
+    function(error) {
+      switch (error.code) {
+        case 1: //PERMISSION_DENIED
+          alert("位置情報の利用が許可されていません");
+          break;
+        case 2: //POSITION_UNAVAILABLE
+          alert("現在位置が取得できませんでした");
+          break;
+        case 3: //TIMEOUT
+          alert("タイムアウトになりました");
+          break;
+        default:
+          alert("その他のエラー(エラーコード:" + error.code + ")");
+          break;
+      }
     }
-  }
   );
 
 }
