@@ -53,3 +53,34 @@ a:hover {
 #news li a {
     margin-left: 15px;
 }
+
+header {
+  background-color: #ffdddd;
+}
+
+#global_navi {
+  background-color: #fffddd;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#main {
+  width: 60%;
+  background-color: #ddffdd;
+}
+
+#aside {
+  width: 60%;
+  background-color: #ffddff;
+}
+
+#news {
+  background-color: #ffdfdd;
+}
+
+footer {
+    background-color: #ddddff;
+}

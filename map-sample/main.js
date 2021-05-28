@@ -1,14 +1,43 @@
+
+
 var map;
 var marker = [];
 var marker_cl;
 var infoWindow = [];
 var myposition;
-var latlang;
 var url = `list.json`
 
 /*global navigator*/
 /*global google*/
 
+function updateMap() {
+
+  $.getJSON(url, (data) => {
+    console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
+
+    var latlng;
+
+    for (let step = 0; step < data.length; step++) {
+
+      latlng = new google.maps.LatLng(data[step].lat, data[step].lng);
+
+      marker[step] = new google.maps.Marker({
+        position: latlng,
+        map: map
+      });
+
+      infoWindow[step] = new google.maps.InfoWindow({
+        content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
+      });
+
+      marker[step].addListener('click', function() {
+        infoWindow[step].open(map, marker[step]);
+      });
+    }
+  });
+}
+
+/* マップを初期化して表示する */
 function initMap() {
 
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -22,33 +51,14 @@ function initMap() {
         zoom: 10
       });
 
-      $.getJSON(url, (data) => {
-        console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
-
-        marker_cl = new google.maps.Marker({
-          position: myposition,
-          map: map,
-          icon: 'images/pos.png'
-        });
-
-        for (let step = 0; step < data.length; step++) {
-
-          latlng = new google.maps.LatLng(data[step].lat, data[step].lng);
-
-          marker[step] = new google.maps.Marker({
-            position: latlng,
-            map: map
-          });
-
-          infoWindow[step] = new google.maps.InfoWindow({
-            content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
-          });
-
-          marker[step].addListener('click', function() {
-            infoWindow[step].open(map, marker[step]);
-          });
-        }
+      marker_cl = new google.maps.Marker({
+        position: myposition,
+        map: map,
+        icon: 'images/pos.png'
       });
+
+      updateMap();
+
     },
     function(error) {
       switch (error.code) {
@@ -66,6 +76,7 @@ function initMap() {
           break;
       }
 
+      //現在地が取得できない場合は県庁所在地を中心とする
       myposition = new google.maps.LatLng(35.2820, 133.0302);
 
       map = new google.maps.Map(document.getElementById("map"), {
@@ -73,28 +84,16 @@ function initMap() {
         zoom: 10
       });
 
-      $.getJSON(url, (data) => {
-        console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
+      updateMap();
 
-        for (let step = 0; step < data.length; step++) {
-
-          latlng = new google.maps.LatLng(data[step].lat, data[step].lng);
-
-          marker[step] = new google.maps.Marker({
-            position: latlng,
-            map: map
-          });
-
-          infoWindow[step] = new google.maps.InfoWindow({
-            content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
-          });
-
-          marker[step].addListener('click', function() {
-            infoWindow[step].open(map, marker[step]);
-          });
-        }
-      });
     }
   );
 
 }
+
+$(function() {
+  $('input[name="store_type"]').change(function() {
+    alert('test');
+    console.log("test");
+  });
+});

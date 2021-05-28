@@ -10,6 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="./main.js"></script>
 </head>
+
 <body>
   <header>
     <h1>島根県「新型コロナの予防に取り組むお店」一覧</h1>
@@ -20,9 +21,23 @@
       </ul>
     </nav>
   </header>
-  <div id="main">
-    <h3>使い方</h3>
-      <p>オレンジのマーカーが現在地、赤のマーカーが対策店舗です。<br>現在地情報が取得できない場合はオレンジのマーカーは表示されません。</p>
+  <div id="wrapper">
+    <div id="main">
+      <h3>使い方</h3>
+      <p>オレンジのマーカーが現在地、赤のマーカーが対策済み店舗です。<br>現在地情報が取得できない場合はオレンジのマーカーは表示されません。</p>
+    </div>
+    <div id="aside">
+      <h3>表示するお店の種類</h3>
+      <input type="checkbox" name="store_type" value="all">全て<br>
+      <input type="checkbox" name="store_type" value="kyakuseki">客席飲食施設<br>
+      <input type="checkbox" name="store_type" value="settai">接待飲食施設<br>
+      <input type="checkbox" name="store_type" value="shukuhaku">宿泊施設<br>
+      <input type="checkbox" name="store_type" value="riyou">理容所<br>
+      <input type="checkbox" name="store_type" value="biyou">美容所<br>
+      <input type="checkbox" name="store_type" value="clean">クリーニング所<br>
+      <input type="checkbox" name="store_type" value="yokuzyou">公衆浴場<br>
+      <input type="checkbox" name="store_type" value="kouri">食品小売店舗<br>
+    </div>
   </div>
   <div id="map"></div>
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
