@@ -1,5 +1,3 @@
-
-
 var map;
 var marker = [];
 var marker_cl;
@@ -10,10 +8,47 @@ var url = `list.json`
 /*global navigator*/
 /*global google*/
 
+function confirmCheckBox(tmp_type) {
+
+  for (var i = 0; i < document.form1.store_type.length; i++) {
+    if (document.form1.store_type[i].checked && document.form1.store_type[i].value == tmp_type) {
+      return true;
+    }
+    else {}
+  }
+
+  return false;
+
+}
+
 function updateMap() {
 
   $.getJSON(url, (data) => {
-    console.log(`lat=${data[0].lat}, lng=${data[0].lng}, name=${data[0].name}`);
+
+    for (let step = 0; step < data.length; step++) {
+
+      if (data[step].etc == "error" || !confirmCheckBox(data[step].type)) {
+        marker[step].setMap(null);
+      }
+      else {
+        marker[step].setMap(map);
+      }
+
+      infoWindow[step] = new google.maps.InfoWindow({
+        content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
+      });
+
+      marker[step].addListener('click', function() {
+        infoWindow[step].open(map, marker[step]);
+      });
+
+    }
+  });
+}
+
+function initMarker() {
+
+  $.getJSON(url, (data) => {
 
     var latlng;
 
@@ -23,15 +58,6 @@ function updateMap() {
 
       marker[step] = new google.maps.Marker({
         position: latlng,
-        map: map
-      });
-
-      infoWindow[step] = new google.maps.InfoWindow({
-        content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
-      });
-
-      marker[step].addListener('click', function() {
-        infoWindow[step].open(map, marker[step]);
       });
     }
   });
@@ -56,6 +82,8 @@ function initMap() {
         map: map,
         icon: 'images/pos.png'
       });
+
+      initMarker();
 
       updateMap();
 
@@ -84,6 +112,8 @@ function initMap() {
         zoom: 10
       });
 
+      initMarker();
+
       updateMap();
 
     }
@@ -92,8 +122,22 @@ function initMap() {
 }
 
 $(function() {
+  $('input[value="all"]').change(function() {
+
+    var i;
+
+    if (document.form1.store_type[0].checked) {
+      for (i = 1; i < document.form1.store_type.length; i++) {
+        document.form1.store_type[i].checked = true;
+      }
+    }
+    else {
+      for (i = 1; i < document.form1.store_type.length; i++) {
+        document.form1.store_type[i].checked = false;
+      }
+    }
+  });
   $('input[name="store_type"]').change(function() {
-    alert('test');
-    console.log("test");
+    updateMap();
   });
 });
