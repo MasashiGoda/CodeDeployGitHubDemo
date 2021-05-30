@@ -3,8 +3,8 @@ var marker = [];
 var marker_cl;
 var infoWindow = [];
 var myposition;
-var list_url = `Json/list.json`
-var city_url = `Json/city.json`
+var list_url = "./Json/list.json"
+var city_url = "./Json/city.json"
 
 /*global navigator*/
 /*global google*/
@@ -75,7 +75,7 @@ function initMap() {
 
       map = new google.maps.Map(document.getElementById("map"), {
         center: myposition,
-        zoom: 10
+        zoom: 16
       });
 
       marker_cl = new google.maps.Marker({
@@ -106,11 +106,11 @@ function initMap() {
       }
 
       //現在地が取得できない場合は県庁所在地を中心とする
-      myposition = new google.maps.LatLng(35.2820, 133.0302);
+      myposition = new google.maps.LatLng(35.468187, 133.048594);
 
       map = new google.maps.Map(document.getElementById("map"), {
         center: myposition,
-        zoom: 10
+        zoom: 16
       });
 
       initMarker();
@@ -160,6 +160,9 @@ function updateCenter() {
         lat = data[step].lat;
         newposition = new google.maps.LatLng(lat, lng);
         map.panTo(newposition);
+      }
+      else if ("" == city_name) {
+        map.panTo(myposition);
       }
       else {}
     }
