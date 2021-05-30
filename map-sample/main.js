@@ -3,7 +3,8 @@ var marker = [];
 var marker_cl;
 var infoWindow = [];
 var myposition;
-var url = `list.json`
+var list_url = `Json/list.json`
+var city_url = `Json/city.json`
 
 /*global navigator*/
 /*global google*/
@@ -23,7 +24,7 @@ function confirmCheckBox(tmp_type) {
 
 function updateMap() {
 
-  $.getJSON(url, (data) => {
+  $.getJSON(list_url, (data) => {
 
     for (let step = 0; step < data.length; step++) {
 
@@ -48,7 +49,7 @@ function updateMap() {
 
 function initMarker() {
 
-  $.getJSON(url, (data) => {
+  $.getJSON(list_url, (data) => {
 
     var latlng;
 
@@ -141,3 +142,35 @@ $(function() {
     updateMap();
   });
 });
+
+function updateCenter() {
+
+  var num = document.form2.town.selectedIndex;
+  var city_name = document.form2.town.options[num].value;
+
+  $.getJSON(city_url, (data) => {
+
+    for (let step = 0; step < data.length; step++) {
+      var lng;
+      var lat;
+      var newposition;
+
+      if (data[step].name == city_name) {
+        lng = data[step].lng;
+        lat = data[step].lat;
+        newposition = new google.maps.LatLng(lat, lng);
+        map.panTo(newposition);
+      }
+      else {}
+    }
+  });
+
+}
+
+$(function() {
+  $('select[name="town"]').change(function() {
+
+    updateCenter();
+
+  });
+})

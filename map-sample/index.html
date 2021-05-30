@@ -31,11 +31,17 @@
   <div id="wrapper_top">
     <div id="main">
       <h3>市町村へ移動</h3>
-      <select>
-      <option>--</option>
-      <option>松江市</option>
-      </select>
+      <form name="form2">
+        <select name="town">
+          <option name="townlist" value="">--</option>
+          <option name="townlist" value="matsueshi">松江市</option>
+          <option name="townlist" value="hamadashi">浜田市</option>
+          </select>
+      </form>
       <h3>キーワードで検索</h3>
+      <p>店舗名や住所を入力してください。</p>
+      <input type="search" name="search" placeholder="キーワードを入力">
+      <input type="submit" name="submit" value="検索">
     </div>
     <div id="aside">
       <div id="aside_top">
