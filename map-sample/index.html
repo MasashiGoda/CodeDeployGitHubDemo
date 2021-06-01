@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="島根県の「新型コロナの予防に取り組むお店」の一覧をGoogleマップに表示するサイトです。">
-  <title>島根県「新型コロナの予防に取り組むお店」一覧</title>
+  <meta name="description" content="島根県が認証した「新型コロナの予防に取り組むお店」の一覧をGoogleマップに表示するサイトです。">
+  <title>しまね「新型コロナの予防に取り組むお店」一覧のマップ</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" type="text/css" href="./css/style.css" />
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -30,7 +30,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ7oXquAyekjHJykOUNzDX5rG5HmN91nA&callback=initMap&libraries=&v=weekly" async></script>
   <div id="wrapper_top">
     <div id="main">
-      <h3>市町村へ移動</h3>
+      <h2>市町村へ移動</h2>
       <form name="form2">
         <select name="town">
           <option name="townlist" value="">現在地</option>
@@ -38,14 +38,14 @@
           <option name="townlist" value="hamadashi">浜田市</option>
           </select>
       </form>
-      <h3><工事中>キーワードで検索</h3>
+      <h2><工事中>キーワードで検索</h2>
       <p>店舗名や住所を入力してください。</p>
       <input type="search" name="search" placeholder="キーワードを入力">
       <input type="submit" name="submit" value="検索">
     </div>
     <div id="aside">
       <div id="aside_top">
-        <h3>表示するお店の種類</h3>
+        <h2>表示するお店の種類</h2>
       </div>
       <div id="aside_wrapper">
         <div id="aside_left">
@@ -70,20 +70,24 @@
   </div>
   <div id="wrapper_bottom">
     <div id="news">
-      <h3>お知らせ</h3>
+      <h2>お知らせ</h2>
       <ul>
         <li>
+          <span>2021/06/01</span>
+          <a href="index.html">v1.0_デザインを更新しました</a>
+        </li>
+        <li>
           <span>2021/05/28</span>
-          <a href="index.html">掲載店舗を更新しました</a>
+          <a href="contact.html">v0.1_掲載店舗を更新しました</a>
         </li>
         <li>
           <span>2021/05/27</span>
-          <a href="index.html">サイトを開設しました</a>
+          <a href="index.html">v0.0_サイトを開設しました</a>
         </li>
       </ul>
     </div>
     <div id="link">
-      <h3>リンク</h3>
+      <h2>リンク</h2>
       <ul>
         <li><a href="https://www.pref.shimane.lg.jp/">島根県庁HP</a></li>
         <li><a href="https://www.pref.shimane.lg.jp/medical/yakuji/eisei/life_hygiene/koronatorikumizigyousya.html">しまね「新型コロナの予防に取り組むお店」紹介事業について</a></li>

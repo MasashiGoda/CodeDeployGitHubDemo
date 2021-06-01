@@ -36,7 +36,7 @@ function updateMap() {
       }
 
       infoWindow[step] = new google.maps.InfoWindow({
-        content: `<div class="sample"><a href="${data[step].url}">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
+        content: `<div class="sample"><a href="${data[step].url}" target="_blank" rel="noopener noreferrer">${data[step].name}</a><p>${data[step].tell}</p><p>${data[step].address}</p></div>`
       });
 
       marker[step].addListener('click', function() {
