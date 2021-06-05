@@ -8,5 +8,90 @@
         "name": "hamadashi",
         "lng": 132.079864,
         "lat": 34.899235
+    },
+    {
+        "name": "izumoshi",
+        "lng": 132.754681,
+        "lat": 35.367032
+    },
+    {
+        "name": "masudashi",
+        "lng": 131.842862,
+        "lat": 34.674814
+    },
+    {
+        "name": "oodashi",
+        "lng": 132.499351,
+        "lat": 35.192089
+    },
+    {
+        "name": "yasugishi",
+        "lng": 133.251054,
+        "lat": 35.430934
+    },
+    {
+        "name": "goutsushi",
+        "lng": 132.221486,
+        "lat": 35.011117
+    },
+    {
+        "name": "unnanshi",
+        "lng": 132.900299,
+        "lat": 35.30772
+    },
+    {
+        "name": "okuizumotyou",
+        "lng": 133.001923,
+        "lat": 35.197282
+    },
+    {
+        "name": "iinantyou",
+        "lng": 132.714038,
+        "lat": 35.000054
+    },
+    {
+        "name": "kawamotomachi",
+        "lng": 132.495924,
+        "lat": 34.99531
+    },
+    {
+        "name": "misatotyou",
+        "lng": 132.590934,
+        "lat": 35.076557
+    },
+    {
+        "name": "oonantyou",
+        "lng": 132.437986,
+        "lat": 34.893974
+    },
+    {
+        "name": "tsuwanotyou",
+        "lng": 131.838286,
+        "lat": 34.543681
+    },
+    {
+        "name": "yoshikatyou",
+        "lng": 131.935108,
+        "lat": 34.353493
+    },
+    {
+        "name": "amatyou",
+        "lng": 133.096175,
+        "lat": 36.096829
+    },
+    {
+        "name": "nishinoshimatyou",
+        "lng": 132.994341,
+        "lat": 36.093212
+    },
+    {
+        "name": "chibumura",
+        "lng": 133.039361,
+        "lat": 36.013875
+    },
+    {
+        "name": "okinosimatyou",
+        "lng": 133.321553,
+        "lat": 36.209191
     }
 ]
