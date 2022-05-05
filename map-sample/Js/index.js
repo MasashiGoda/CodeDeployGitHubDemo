@@ -9,6 +9,7 @@ var city_url = "./Json/city.json"
 /*global navigator*/
 /*global google*/
 
+/*チェックボックスを確認する関数*/
 function confirmCheckBox(tmp_type) {
 
   for (var i = 0; i < document.form1.store_type.length; i++) {
@@ -22,6 +23,7 @@ function confirmCheckBox(tmp_type) {
 
 }
 
+/*地図を更新する関数*/
 function updateMap() {
 
   $.getJSON(list_url, (data) => {
@@ -47,6 +49,7 @@ function updateMap() {
   });
 }
 
+/*マーカーを初期化する関数*/
 function initMarker() {
 
   $.getJSON(list_url, (data) => {
@@ -64,7 +67,7 @@ function initMarker() {
   });
 }
 
-/* マップを初期化して表示する */
+/*地図を初期化する関数*/
 function initMap() {
 
   navigator.geolocation.getCurrentPosition(function(position) {
@@ -122,6 +125,7 @@ function initMap() {
 
 }
 
+/*地図を更新するjQuery*/
 $(function() {
   $('input[value="all"]').change(function() {
 
@@ -143,6 +147,7 @@ $(function() {
   });
 });
 
+/*地図の中心を更新する関数*/
 function updateCenter() {
 
   var num = document.form2.town.selectedIndex;
@@ -170,6 +175,7 @@ function updateCenter() {
 
 }
 
+/*地図の中心を更新するjQuery*/
 $(function() {
   $('select[name="town"]').change(function() {
 
@@ -177,3 +183,48 @@ $(function() {
 
   });
 })
+
+/*店舗を検索するjQuery*/
+$(function() {
+  searchWord = function() {
+    var searchResult,
+      searchText = $(this).val(), // 検索ボックスに入力された値
+      targetText,
+      hitNum;
+
+    // 検索結果を格納するための配列を用意
+    searchResult = [];
+
+    // 検索結果エリアの表示を空にする
+    $('#search-result__list').empty();
+    $('.search-result__hit-num').empty();
+
+    // 検索ボックスに値が入ってる場合
+    if (searchText != '') {
+      $.ajaxSetup({async: false});
+      $.getJSON(list_url, (data) => {
+
+        for (let step = 0; step < data.length; step++) {
+          targetText = data[step].name
+          if (targetText.indexOf(searchText) != -1) {
+            searchResult.push(targetText)
+          }
+        }
+      });
+      $.ajaxSetup({async: true});
+      // 検索結果をページに出力
+      for (var i = 0; i < searchResult.length; i++) {
+        searchResult[i] = '<span>' + searchResult[i] + '<br></span>'
+        $(searchResult[i]).appendTo('#search-result__list');
+        // $('<span>').text(searchResult[i]).appendTo('#search-result__list');
+      }
+
+      // ヒットの件数をページに出力
+      hitNum = '<span>検索結果</span>：' + searchResult.length + '件見つかりました。';
+      $('.search-result__hit-num').append(hitNum);
+    }
+  };
+
+  // searchWordの実行
+  $('#search-text').on('input', searchWord);
+});

@@ -61,8 +61,17 @@
       </form>
       <h2><工事中>キーワードで検索</h2>
       <p>店舗名や住所を入力してください。</p>
-      <input type="search" name="search" placeholder="キーワードを入力">
-      <input type="submit" name="submit" value="検索">
+      <!--<input type="search" name="search" placeholder="キーワードを入力">-->
+      <!--<input type="submit" name="submit" value="検索">-->
+      <div class="search-area">
+      <form>
+        <input type="text" id="search-text" placeholder="検索ワードを入力">
+      </form>
+      <div class="search-result">
+        <div class="search-result__hit-num"></div>
+        <div id="search-result__list"></div>
+      </div>
+    </div>
     </div>
     <div id="aside">
       <div id="aside_top">
