@@ -222,11 +222,15 @@ $(function() {
       for (var i = 0; i < searchResult.length; i++) {
         searchResult_ed = '<tr>';
         for (var j = 0; j < 3; j++){
-          searchResult_ed = searchResult_ed + '<td>' + searchResult[i][j] + '</td>'
+          if( j == 0){
+            searchResult_ed = searchResult_ed + '<td><a href="#" class="rs_name">' + searchResult[i][j] + '</a></td>'
+          }
+          else{
+            searchResult_ed = searchResult_ed + '<td>' + searchResult[i][j] + '</td>'
+          }
         }
         searchResult_ed = searchResult_ed + '</tr>';
         $(searchResult_ed).appendTo('#search-result__list');
-        // $('<span>').text(searchResult[i]).appendTo('#search-result__list');
       }
 
       // ヒットの件数をページに出力
@@ -237,4 +241,9 @@ $(function() {
 
   // searchWordの実行
   $('#search-text').on('input', searchWord);
+});
+
+/*地図の中心を検索結果の位置に移動するjQuery*/
+$(document).on("click", ".rs_name", function () {
+    alert("イベントが適用されています。");
 });
