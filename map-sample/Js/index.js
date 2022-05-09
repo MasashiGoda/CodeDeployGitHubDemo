@@ -188,6 +188,7 @@ $(function() {
 $(function() {
   searchWord = function() {
     var searchResult,
+      searchResult_ed,
       searchText = $(this).val(), // 検索ボックスに入力された値
       targetText,
       hitNum;
@@ -197,7 +198,7 @@ $(function() {
     
     // 検索対象を店名、住所、電話番号に指定
     targetText = [];
-
+    
     // 検索結果エリアの表示を空にする
     $('#search-result__list').empty();
     $('.search-result__hit-num').empty();
@@ -219,8 +220,12 @@ $(function() {
       $.ajaxSetup({async: true});
       // 検索結果をページに出力
       for (var i = 0; i < searchResult.length; i++) {
-        searchResult[i] = '<span>' + searchResult[i] + '<br></span>'
-        $(searchResult[i]).appendTo('#search-result__list');
+        searchResult_ed = '<tr>';
+        for (var j = 0; j < 3; j++){
+          searchResult_ed = searchResult_ed + '<td>' + searchResult[i][j] + '</td>'
+        }
+        searchResult_ed = searchResult_ed + '</tr>';
+        $(searchResult_ed).appendTo('#search-result__list');
         // $('<span>').text(searchResult[i]).appendTo('#search-result__list');
       }
 

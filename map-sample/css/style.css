@@ -173,3 +173,13 @@ footer {
   border: 1px solid #000;      /* わかりやすくボーダーを引く */
   overflow-y: scroll;          /* 縦方向にスクロール可能にする */
 }
+
+td {
+    border: solid 1px;              /* 枠線指定 */
+}
+ 
+table {
+    border-collapse:  collapse;     /* セルの線を重ねる */
+    width: 100%;
+    table-layout: fixed;
+}
