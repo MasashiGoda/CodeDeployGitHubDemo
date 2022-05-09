@@ -195,17 +195,17 @@ $(function() {
 
     // 検索結果を格納するための配列を用意
     searchResult = [];
-    
+
     // 検索対象を店名、住所、電話番号に指定
     targetText = [];
-    
+
     // 検索結果エリアの表示を空にする
     $('#search-result__list').empty();
     $('.search-result__hit-num').empty();
 
     // 検索ボックスに値が入ってる場合
     if (searchText != '') {
-      $.ajaxSetup({async: false});
+      $.ajaxSetup({ async: false });
       $.getJSON(list_url, (data) => {
 
         for (let step = 0; step < data.length; step++) {
@@ -217,15 +217,15 @@ $(function() {
           }
         }
       });
-      $.ajaxSetup({async: true});
+      $.ajaxSetup({ async: true });
       // 検索結果をページに出力
       for (var i = 0; i < searchResult.length; i++) {
         searchResult_ed = '<tr>';
-        for (var j = 0; j < 3; j++){
-          if( j == 0){
+        for (var j = 0; j < 3; j++) {
+          if (j == 0) {
             searchResult_ed = searchResult_ed + '<td><a href="#" class="rs_name">' + searchResult[i][j] + '</a></td>'
           }
-          else{
+          else {
             searchResult_ed = searchResult_ed + '<td>' + searchResult[i][j] + '</td>'
           }
         }
@@ -244,6 +244,30 @@ $(function() {
 });
 
 /*地図の中心を検索結果の位置に移動するjQuery*/
-$(document).on("click", ".rs_name", function () {
-    alert("イベントが適用されています。");
+$(document).on("click", ".rs_name", function() {
+  var get_text = $(this).text(),
+    lng,
+    lat,
+    num,
+    newposition;
+  // alert(get_text);
+
+  $.ajaxSetup({ async: false });
+  $.getJSON(list_url, (data) => {
+
+    for (let step = 0; step < data.length; step++) {
+      if (data[step].name.indexOf(get_text) != -1) {
+        lng = data[step].lng
+        lat = data[step].lat
+        num = step
+      }
+    }
+    newposition = new google.maps.LatLng(lat, lng);
+    map.panTo(newposition);
+    
+    infoWindow[num].open(map, marker[num]);
+
+  });
+  $.ajaxSetup({ async: true });
+
 });
