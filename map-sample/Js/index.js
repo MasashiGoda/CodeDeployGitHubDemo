@@ -194,6 +194,9 @@ $(function() {
 
     // 検索結果を格納するための配列を用意
     searchResult = [];
+    
+    // 検索対象を店名、住所、電話番号に指定
+    targetText = [];
 
     // 検索結果エリアの表示を空にする
     $('#search-result__list').empty();
@@ -205,9 +208,11 @@ $(function() {
       $.getJSON(list_url, (data) => {
 
         for (let step = 0; step < data.length; step++) {
-          targetText = data[step].name
-          if (targetText.indexOf(searchText) != -1) {
-            searchResult.push(targetText)
+          targetText[0] = data[step].name
+          targetText[1] = data[step].address
+          targetText[2] = data[step].tell
+          if (targetText[0].indexOf(searchText) != -1) {
+            searchResult.push(targetText.concat())
           }
         }
       });
